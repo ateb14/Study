@@ -1,2 +1,2 @@
-# Test_for_my_study(Golang)
+# Test(Golang)
 This is the repository that stores my testing codes in Golang.
