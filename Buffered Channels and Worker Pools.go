@@ -32,10 +32,10 @@ func distribute(NumberOfTask int){
 
 func PrintResult(flag chan bool){
 	for result := range results{
-		fmt.Println("Task ",result.task.id," is finished by worker ",result.id)
+		fmt.Println("Task ",result.task.id," is finished by worker ",result.id," at ",time.Now())
 	}
 	flag<-true
-}
+}//It watches the results channel.
 
 func worker(wg *sync.WaitGroup,id int){
 	for task := range tasks{
@@ -57,8 +57,9 @@ func CreatWorkerPools(NumberOfWorkers int){
 
 func main(){
 	StartTime:=time.Now()
+	fmt.Println("Mission starts at ",StartTime)
 	NumberOfTasks:=100
-	NumberOfWorkers:=20
+	NumberOfWorkers:=20//we can change these parameters to observe the differences in the outputs
 	flag:=make(chan bool)
 	go distribute(NumberOfTasks)
 	go CreatWorkerPools(NumberOfWorkers)
